@@ -3,20 +3,23 @@
 #include <deque>
 #include <raymath.h>
 
-#define WINDOW_WIDTH 600
-#define WINDOW_HEIGHT 600
+#define WINDOW_WIDTH 1400
+#define WINDOW_HEIGHT 800
 
 int grid_size = 25;
 int padding = grid_size*3;
 
-
-Color BACKGROUND_COLOR = { 34, 34, 34, 255 };
-Color SNAKE_COLOR = { 0, 255, 0, 255 };
-Color FOOD_COLOR = { 255, 0, 0, 255 };
+Color BACKGROUND_COLOR = { 20, 20, 20, 255 };
+Color SNAKE_COLOR = { 0, 128, 0, 255 };
+Color FOOD_COLOR = { 204, 204, 0, 255 };
 
 using namespace std;
 
+
 double updateTime = 0;
+
+bool ok = false;
+bool lost = false;
 
 struct coordinates {
 	int x;
@@ -115,16 +118,60 @@ public:
 	}
 };
 
+
+class Menu {
+
+public:
+
+	void drawMenu() {
+		if (lost) {
+			drawAfterLoseMenu();
+		}
+		else {
+			ClearBackground(BACKGROUND_COLOR);
+			string text1 = "Snake Game";
+			int text1FontSize = 40;
+			int text1Length = MeasureText(text1.c_str(), text1FontSize);
+			DrawText(text1.c_str(), (2 * padding + WINDOW_WIDTH - text1Length) / 2, WINDOW_HEIGHT / 2, text1FontSize, LIGHTGRAY);
+
+			string text2 = "Press Enter to continue";
+			int text2FontSize = 20;
+			int text2Length = MeasureText(text2.c_str(), text2FontSize);
+			DrawText(text2.c_str(), (2 * padding + WINDOW_WIDTH - text2Length) / 2, WINDOW_HEIGHT / 2 + 50, text2FontSize, LIGHTGRAY);
+
+			if (IsKeyPressed(KEY_ENTER)) {
+				ok = true;
+			}
+
+		}
+	}
+
+	void drawAfterLoseMenu() {
+
+		ClearBackground(BACKGROUND_COLOR);
+		string text2 = "Press Enter to continue";
+		int text2FontSize = 20;
+		int text2Length = MeasureText(text2.c_str(), text2FontSize);
+		DrawText(text2.c_str(), (2 * padding + WINDOW_WIDTH - text2Length) / 2, WINDOW_HEIGHT / 2 + 50, text2FontSize, LIGHTGRAY);
+		
+	}
+
+
+};
+
 class SnakeGame {
 public:
 	Food food = Food(snake.body);
 	Snake snake = Snake();
-
-	bool ok = true;
+	Menu _menu;
 
 	void draw() {
-		food.drawFood();
-		snake.drawSnake();
+		if (!ok)
+			_menu.drawMenu();
+		else if (ok) {
+			food.drawFood();
+			snake.drawSnake();
+		}
 	}
 
 	void update() {
@@ -151,13 +198,13 @@ public:
 			snake.body[0].x = 0;
 		}
 		if (snake.body[0].x < 0 ) {
-			snake.body[0].x = WINDOW_WIDTH / grid_size;
+			snake.body[0].x = WINDOW_WIDTH / grid_size -1;
 		}
 		if (snake.body[0].y > WINDOW_HEIGHT / grid_size -1) {
 			snake.body[0].y = 0;
 		}
 		if (snake.body[0].y < 0) {
-			snake.body[0].y = WINDOW_HEIGHT / grid_size;
+			snake.body[0].y = WINDOW_HEIGHT / grid_size -1;
 		}
 	}
 
@@ -170,6 +217,8 @@ public:
 	}
 
 	void gameOver() {
+		lost = true;
+		_menu.drawMenu();
 		snake.reset();
 		food.generateFoodPos(snake.body);
 		ok = false;
@@ -188,28 +237,34 @@ int main()
 
 		BeginDrawing();
 
-		if (snakeMoveInterval(0.3)) game.update();
-		
-		if ((IsKeyPressed(KEY_W) || IsKeyPressed(KEY_UP)) && game.snake.direction.y != 1) {
-			game.snake.direction = { 0,-1 };
-			game.ok = true;
+		if (!ok) {
+			game.draw();
 		}
-		if ((IsKeyPressed(KEY_A) || IsKeyPressed(KEY_LEFT)) && game.snake.direction.x != 1) {
-			game.snake.direction = { -1,0 };
-			game.ok = true;
-		}
-		if ((IsKeyPressed(KEY_S) || IsKeyPressed(KEY_DOWN)) && game.snake.direction.y != -1) {
-			game.snake.direction = { 0,1 };
-			game.ok = true;
-		}
-		if ((IsKeyPressed(KEY_D) || IsKeyPressed(KEY_RIGHT)) && game.snake.direction.x != -1) {
-			game.snake.direction = { 1,0 };
-			game.ok = true;
+		else if (ok) {
+			if (snakeMoveInterval(0.2)) game.update();
+
+			if ((IsKeyPressed(KEY_W) || IsKeyPressed(KEY_UP)) && game.snake.direction.y != 1) {
+				game.snake.direction = { 0,-1 };
+				ok = true;
+			}
+			if ((IsKeyPressed(KEY_A) || IsKeyPressed(KEY_LEFT)) && game.snake.direction.x != 1) {
+				game.snake.direction = { -1,0 };
+				ok = true;
+			}
+			if ((IsKeyPressed(KEY_S) || IsKeyPressed(KEY_DOWN)) && game.snake.direction.y != -1) {
+				game.snake.direction = { 0,1 };
+				ok = true;
+			}
+			if ((IsKeyPressed(KEY_D) || IsKeyPressed(KEY_RIGHT)) && game.snake.direction.x != -1) {
+				game.snake.direction = { 1,0 };
+				ok = true;
+			}
+
+			ClearBackground(BACKGROUND_COLOR);
+			DrawRectangleLinesEx(Rectangle{ (float)padding - 7,(float)padding - 7,WINDOW_WIDTH + 14,WINDOW_HEIGHT + 14 }, 7, DARKGREEN);
+			game.draw();
 		}
 
-		ClearBackground(BACKGROUND_COLOR);
-		DrawRectangleLinesEx(Rectangle{ (float)padding - 7,(float)padding - 7,WINDOW_WIDTH + 14,WINDOW_HEIGHT + 14 }, 7, DARKGREEN);
-		game.draw();
 		EndDrawing();
 	}
 
