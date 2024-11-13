@@ -1,8 +1,8 @@
 ﻿  main.cpp
-C:\FACULTATE\Proiecte\SnakeGame\SnakeGame\main.cpp(62,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\FACULTATE\Proiecte\SnakeGame\SnakeGame\main.cpp(63,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\FACULTATE\Proiecte\SnakeGame\SnakeGame\main.cpp(65,31): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\FACULTATE\Proiecte\SnakeGame\SnakeGame\main.cpp(117,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\FACULTATE\Proiecte\SnakeGame\SnakeGame\main.cpp(65,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\FACULTATE\Proiecte\SnakeGame\SnakeGame\main.cpp(66,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\FACULTATE\Proiecte\SnakeGame\SnakeGame\main.cpp(68,31): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\FACULTATE\Proiecte\SnakeGame\SnakeGame\main.cpp(120,53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   SnakeGame.vcxproj -> C:\FACULTATE\Proiecte\SnakeGame\x64\Debug\SnakeGame.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

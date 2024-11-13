@@ -3,7 +3,8 @@
 #include <deque>
 #include <raymath.h>
 
-#define WINDOW_WIDTH 1400
+
+#define WINDOW_WIDTH 1000
 #define WINDOW_HEIGHT 800
 
 int grid_size = 25;
@@ -12,9 +13,11 @@ int padding = grid_size*3;
 Color BACKGROUND_COLOR = { 20, 20, 20, 255 };
 Color SNAKE_COLOR = { 0, 128, 0, 255 };
 Color FOOD_COLOR = { 204, 204, 0, 255 };
+Color TEXT_COLOR = RAYWHITE;
 
 using namespace std;
 
+int gameScore = 0;
 
 double updateTime = 0;
 
@@ -142,18 +145,20 @@ public:
 			if (IsKeyPressed(KEY_ENTER)) {
 				ok = true;
 			}
-
 		}
 	}
 
 	void drawAfterLoseMenu() {
 
 		ClearBackground(BACKGROUND_COLOR);
-		string text2 = "Press Enter to continue";
+		string text2 = "Press Enter to play again";
 		int text2FontSize = 20;
 		int text2Length = MeasureText(text2.c_str(), text2FontSize);
 		DrawText(text2.c_str(), (2 * padding + WINDOW_WIDTH - text2Length) / 2, WINDOW_HEIGHT / 2 + 50, text2FontSize, LIGHTGRAY);
 		
+		if (IsKeyPressed(KEY_ENTER)) {
+			ok = true;
+		}
 	}
 
 
@@ -189,6 +194,7 @@ public:
 		if ((snakeHeadPos.x == foodPos.x) && (snakeHeadPos.y == foodPos.y)){
 			food.generateFoodPos(snake.body);
 			snake.increaseLength = true;
+			gameScore++;
 		}
 
 	}
@@ -222,6 +228,7 @@ public:
 		snake.reset();
 		food.generateFoodPos(snake.body);
 		ok = false;
+		gameScore = 0;
 	}
 };
 
@@ -262,6 +269,7 @@ int main()
 
 			ClearBackground(BACKGROUND_COLOR);
 			DrawRectangleLinesEx(Rectangle{ (float)padding - 7,(float)padding - 7,WINDOW_WIDTH + 14,WINDOW_HEIGHT + 14 }, 7, DARKGREEN);
+			DrawText(TextFormat("Score: %d", gameScore), (2 * padding + WINDOW_WIDTH - MeasureText(TextFormat("Score: %d", gameScore), 30)) / 2, padding / 2, 30, TEXT_COLOR);
 			game.draw();
 		}
 
