@@ -176,7 +176,7 @@ public:
 		else if (IsKeyPressed(KEY_BACKSPACE)) {
 			ok = false;
 			lost = false;
-
+			gameScore = 0;
 		}
 	}
 
