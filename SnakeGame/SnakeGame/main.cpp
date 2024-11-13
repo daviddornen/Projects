@@ -3,6 +3,7 @@
 #include <deque>
 #include <raymath.h>
 
+//de facut la fiecare text textX si textY si de recentrat meniul 
 
 #define WINDOW_WIDTH 1000
 #define WINDOW_HEIGHT 800
@@ -133,14 +134,15 @@ public:
 		else {
 			ClearBackground(BACKGROUND_COLOR);
 			string text1 = "Snake Game";
-			int text1FontSize = 40;
+			int text1FontSize = 60;
 			int text1Length = MeasureText(text1.c_str(), text1FontSize);
 			DrawText(text1.c_str(), (2 * padding + WINDOW_WIDTH - text1Length) / 2, WINDOW_HEIGHT / 2, text1FontSize, LIGHTGRAY);
 
-			string text2 = "Press Enter to continue";
+			string text2 = "Press ENTER to continue";
 			int text2FontSize = 20;
 			int text2Length = MeasureText(text2.c_str(), text2FontSize);
-			DrawText(text2.c_str(), (2 * padding + WINDOW_WIDTH - text2Length) / 2, WINDOW_HEIGHT / 2 + 50, text2FontSize, LIGHTGRAY);
+			DrawText(text2.c_str(), (2 * padding + WINDOW_WIDTH - text2Length) / 2, WINDOW_HEIGHT / 2 + 70, text2FontSize, LIGHTGRAY);
+
 
 			if (IsKeyPressed(KEY_ENTER)) {
 				ok = true;
@@ -151,13 +153,30 @@ public:
 	void drawAfterLoseMenu() {
 
 		ClearBackground(BACKGROUND_COLOR);
-		string text2 = "Press Enter to play again";
-		int text2FontSize = 20;
+		string text2 = "Press ENTER to play again";
+		int text2FontSize = 23;
 		int text2Length = MeasureText(text2.c_str(), text2FontSize);
-		DrawText(text2.c_str(), (2 * padding + WINDOW_WIDTH - text2Length) / 2, WINDOW_HEIGHT / 2 + 50, text2FontSize, LIGHTGRAY);
+		DrawText(text2.c_str(), (2 * padding + WINDOW_WIDTH - text2Length) / 2, WINDOW_HEIGHT + 2*padding - 130 , text2FontSize, LIGHTGRAY);
 		
+
+		string text3 = "Press ESC to go back to menu";
+		int text3FontSize = 23;
+		int text3Length = MeasureText(text3.c_str(), text3FontSize);
+		DrawText(text3.c_str(), (2 * padding + WINDOW_WIDTH - text3Length) / 2, WINDOW_HEIGHT + 2 * padding - 100, text3FontSize, LIGHTGRAY);
+		
+		DrawText("Game Over", (2 * padding + WINDOW_WIDTH - MeasureText("Game Over", 90)) / 2, 2 * padding, 90, TEXT_COLOR);
+		DrawText("Score", (2 * padding + WINDOW_WIDTH - MeasureText("Score", 50)) / 2, WINDOW_HEIGHT/2 - padding , 50, TEXT_COLOR);
+		DrawText(TextFormat("%d", gameScore), (2 * padding + WINDOW_WIDTH - MeasureText(TextFormat("%d", gameScore), 150)) / 2, WINDOW_HEIGHT / 2 +padding + padding/2, 150, LIGHTGRAY);
+
+
 		if (IsKeyPressed(KEY_ENTER)) {
 			ok = true;
+			gameScore = 0;
+		}
+		else if (IsKeyPressed(KEY_BACKSPACE)) {
+			ok = false;
+			lost = false;
+
 		}
 	}
 
@@ -194,7 +213,7 @@ public:
 		if ((snakeHeadPos.x == foodPos.x) && (snakeHeadPos.y == foodPos.y)){
 			food.generateFoodPos(snake.body);
 			snake.increaseLength = true;
-			gameScore++;
+			gameScore+=10;
 		}
 
 	}
@@ -228,7 +247,6 @@ public:
 		snake.reset();
 		food.generateFoodPos(snake.body);
 		ok = false;
-		gameScore = 0;
 	}
 };
 
