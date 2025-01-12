@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<tren id="IC561" durata="401">
+  <statie nr="1" numeStatie="Iasi" plecare="05:17" intarziere="0" />
+  <statie nr="2" numeStatie="Pascani" sosire="06:15" plecare="06:38" intarziere="0" />
+  <statie nr="3" numeStatie="Roman" sosire="07:03" plecare="07:04" intarziere="0" />
+  <statie nr="4" numeStatie="Bacau" sosire="07:32" plecare="07:44" intarziere="0" />
+  <statie nr="5" numeStatie="Focsani" sosire="09:00" plecare="09:01" intarziere="0" />
+  <statie nr="6" numeStatie="Buzau" sosire="10:09" plecare="10:11" intarziere="0" />
+  <statie nr="7" numeStatie="Ploiesti Sud" sosire="11:19" plecare="11:20" intarziere="0" />
+  <statie nr="8" numeStatie="Bucuresti Nord" sosire="11:58" intarziere="0" />
+</tren> 
+<tren id="R5552" durata="150">
+  <statie nr="1" numeStatie="Targu Neamt" plecare="10:54" intarziere="0" />
+  <statie nr="2" numeStatie="Sfantu Mina" sosire="10:59" plecare="11:00" intarziere="0" />
+  <statie nr="3" numeStatie="Plaiesu hc" sosire="11:03" plecare="11:04" intarziere="0" />
+  <statie nr="4" numeStatie="Timisesti" sosire="11:10" plecare="11:11" intarziere="0" />
+  <statie nr="5" numeStatie="Cristești Pascani hc" sosire="11:16" plecare="11:17" intarziere="0" />
+  <statie nr="6" numeStatie="Topile hc" sosire="11:25" plecare="11:26" intarziere="0" />
+  <statie nr="7" numeStatie="Pascani" sosire="11:35" plecare="11:59" intarziere="0" />
+  <statie nr="8" numeStatie="Ruginoasa" sosire="12:13" plecare="12:14" intarziere="0" />
+  <statie nr="9" numeStatie="Costesti Iasi hc" sosire="12:21" plecare="12:22" intarziere="0" />
+  <statie nr="10" numeStatie="Pietrisu hc" sosire="12:27" plecare="12:28" intarziere="0" />
+  <statie nr="11" numeStatie="Targu Frumos" sosire="12:34" plecare="12:35" intarziere="0" />
+  <statie nr="12" numeStatie="Sarca" sosire="12:45" plecare="12:46" intarziere="0" />
+  <statie nr="13" numeStatie="Budai hc" sosire="12:52" plecare="12:53" intarziere="0" />
+  <statie nr="14" numeStatie="Podu Iloaiei" sosire="13:00" plecare="13:01" intarziere="0" />
+  <statie nr="15" numeStatie="Letcani" sosire="13:08" plecare="13:09" intarziere="0" />
+  <statie nr="16" numeStatie="Iasi" sosire="13:24" intarziere="0" />
+</tren>
+<tren id="IR1581" durata="148">
+  <statie nr="1" numeStatie="Bucuresti Nord" plecare="07:00" intarziere="0" />
+  <statie nr="2" numeStatie="Bucuresti Baneasa" sosire="07:09" plecare="07:10" intarziere="0" />
+  <statie nr="3" numeStatie="Ciulnita" sosire="08:04" plecare="08:05" intarziere="0" />
+  <statie nr="4" numeStatie="Fetesti" sosire="08:29" plecare="08:30" intarziere="0" />
+  <statie nr="5" numeStatie="Cernavoda Pod" sosire="08:48" plecare="08:49" intarziere="0" />
+  <statie nr="6" numeStatie="Medgidia" sosire="09:04" plecare="09:05" intarziere="0" />
+  <statie nr="7" numeStatie="Constanta" sosire="09:28" intarziere="0" />
+</tren> 

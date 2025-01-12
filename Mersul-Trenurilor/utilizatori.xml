@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<utilizatori>
+	<utilizator>
+		<name>david</name>
+		<parola>parola1</parola>
+		<conectat>0</conectat>
+	</utilizator>
+	<utilizator>
+		<name>ion</name>
+		<parola>parola2</parola>
+		<conectat>0</conectat>
+	</utilizator>
+	<utilizator>
+		<name>alex</name>
+		<parola>parola3</parola>
+		<conectat>0</conectat>
+	</utilizator>
+	<utilizator>
+		<name>maria</name>
+		<parola>parola4</parola>
+		<conectat>0</conectat>
+	</utilizator>
+	<utilizator>
+		<name>stefania</name>
+		<parola>parola5</parola>
+		<conectat>0</conectat>
+	</utilizator>
+</utilizatori>
